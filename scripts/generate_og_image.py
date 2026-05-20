@@ -13,7 +13,7 @@ OUT = ROOT / "og-image.png"
 W, H = 1200, 630
 BG = (15, 23, 42)        # slate-900
 CARD = (30, 41, 59)      # slate-800
-ACCENT = (45, 212, 191)  # teal-400
+ACCENT = (237, 63, 34)   # brand orange #ED3F22
 WHITE = (248, 250, 252)
 MUTED = (148, 163, 184)  # slate-400
 
@@ -40,7 +40,7 @@ def main() -> None:
     # Accent glow corner
     glow = Image.new("RGB", (W, H), BG)
     gd = ImageDraw.Draw(glow)
-    gd.ellipse([W - 360, -200, W + 200, 360], fill=(17, 60, 70))
+    gd.ellipse([W - 360, -200, W + 200, 360], fill=(74, 32, 22))
     img = Image.blend(img, glow, 0.5)
     d = ImageDraw.Draw(img)
 
@@ -79,9 +79,16 @@ def main() -> None:
         d.text((cx + 24, cy + 11), chip, font=cf, fill=WHITE)
         cx += cw + 48 + 16
 
-    # Footer: name + stack
-    nf = font("segoeuib.ttf", 26)
-    d.text((margin, H - margin - 30), "Samuel", font=nf, fill=WHITE)
+    # Footer: brand logo + stack
+    logo_path = ROOT / "assets" / "logo.png"
+    if logo_path.exists():
+        logo = Image.open(logo_path).convert("RGBA")
+        target_h = 46
+        target_w = int(logo.width * target_h / logo.height)
+        logo = logo.resize((target_w, target_h), Image.LANCZOS)
+        img.paste(logo, (margin, H - margin - target_h), logo)
+    else:
+        d.text((margin, H - margin - 30), "Samuel", font=font("segoeuib.ttf", 26), fill=WHITE)
     stf = font("segoeui.ttf", 22)
     stack = "FastAPI · Claude Opus 4.7 · pdfplumber · Docker"
     sw = d.textlength(stack, font=stf)
