@@ -51,18 +51,59 @@
         to { opacity: 1; transform: translateY(0); }
       }
       .fade-in { animation: fade-in-up 0.6s ease-out backwards; }
+
+      html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+
+      /* Scroll-reveal — elements rise into place as they enter the viewport */
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal.in-view { opacity: 1; transform: none; }
+
+      /* Hero cursor spotlight — a soft brand-orange glow that follows the pointer */
+      #spotlight {
+        background: radial-gradient(
+          560px circle at var(--mx, 50%) var(--my, -20%),
+          rgba(237, 63, 34, 0.12),
+          transparent 62%
+        );
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      /* Animated brand-orange underline on the accent word */
+      .accent-underline {
+        background-image: linear-gradient(#ED3F22, #ED3F22);
+        background-repeat: no-repeat;
+        background-position: 0 100%;
+        background-size: 0% 3px;
+        transition: background-size 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.4s;
+        padding-bottom: 2px;
+      }
+      .accent-underline.in-view { background-size: 100% 3px; }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .reveal, .accent-underline { opacity: 1; transform: none; transition: none; }
+        .accent-underline { background-size: 100% 3px; }
+        .fade-in { animation: none; }
+        #spotlight { display: none; }
+      }
     </style>
   </head>
   <body class="bg-slate-50 text-slate-900 antialiased">
     <!-- ================================================================ -->
     <!-- HERO                                                              -->
     <!-- ================================================================ -->
-    <header class="sticky top-0 z-50 border-b border-slate-800 bg-slate-900/95 backdrop-blur">
+    <header class="sticky top-0 z-50 border-b border-white/15 bg-[#ED3F22]/95 backdrop-blur">
       <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <a href="#" class="flex items-center" aria-label="Samuel · AI Automation — home">
+        <a href="#" class="flex items-center transition hover:opacity-80" aria-label="Samuel · AI Automation — home">
           <img src="assets/logo.png" alt="Samuel · AI Automation" class="h-8 w-auto" />
         </a>
-        <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
+        <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-white/80">
           <a href="#work" class="hover:text-white transition">Work</a>
           <a href="#about" class="hover:text-white transition">About</a>
           <a href="#letter" class="hover:text-white transition">Application letter</a>
@@ -75,8 +116,9 @@
       </div>
     </header>
 
-    <section class="relative overflow-hidden">
+    <section id="hero-section" class="relative overflow-hidden">
       <div class="absolute inset-0 grid-bg opacity-60"></div>
+      <div id="spotlight" class="pointer-events-none absolute inset-0"></div>
       <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-50"></div>
 
       <div class="relative z-10 mx-auto max-w-6xl px-6 pt-16 pb-24 md:pt-24 md:pb-36">
@@ -90,7 +132,7 @@
           </div>
 
           <h1 class="fade-in mt-6 font-display text-4xl md:text-6xl font-semibold leading-tight tracking-tight" style="animation-delay: 0.05s">
-            I build <span class="accent">AI-assisted tools</span>
+            I build <span class="accent accent-underline">AI-assisted tools</span>
             for the back office of insurance.
           </h1>
 
@@ -145,7 +187,7 @@
         </div>
 
         <!-- Case study 1: Document Extraction -->
-        <article class="group mb-8 overflow-hidden rounded-3xl border border-slate-200 bg-white transition hover:shadow-2xl hover:shadow-slate-300/30">
+        <article class="reveal group mb-8 overflow-hidden rounded-3xl border border-slate-200 bg-white transition hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-300/40">
           <div class="grid md:grid-cols-2 gap-0">
             <!-- Visual side -->
             <div class="relative aspect-[4/3] md:aspect-auto bg-gradient-to-br from-slate-100 to-slate-200 overflow-hidden">
@@ -187,7 +229,7 @@
               <div class="mt-6 grid grid-cols-3 gap-3 text-xs">
                 <div>
                   <p class="text-slate-400 uppercase tracking-wider">Saved per case</p>
-                  <p class="mt-1 font-semibold text-slate-900">~8 minutes</p>
+                  <p class="mt-1 font-semibold text-slate-900">~<span class="countup" data-to="8">0</span> minutes</p>
                 </div>
                 <div>
                   <p class="text-slate-400 uppercase tracking-wider">AI model</p>
@@ -232,7 +274,7 @@
         </article>
 
         <!-- Case study 2: Case Classification -->
-        <article class="group mb-8 overflow-hidden rounded-3xl border border-slate-200 bg-white transition hover:shadow-2xl hover:shadow-slate-300/30">
+        <article class="reveal group mb-8 overflow-hidden rounded-3xl border border-slate-200 bg-white transition hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-300/40">
           <div class="grid md:grid-cols-2 gap-0">
             <!-- Text side first on this one -->
             <div class="p-8 md:p-10 flex flex-col md:order-1">
@@ -251,11 +293,11 @@
               <div class="mt-6 grid grid-cols-3 gap-3 text-xs">
                 <div>
                   <p class="text-slate-400 uppercase tracking-wider">Saved per case</p>
-                  <p class="mt-1 font-semibold text-slate-900">~3 minutes</p>
+                  <p class="mt-1 font-semibold text-slate-900">~<span class="countup" data-to="3">0</span> minutes</p>
                 </div>
                 <div>
                   <p class="text-slate-400 uppercase tracking-wider">Categories</p>
-                  <p class="mt-1 font-semibold text-slate-900">11 + custom</p>
+                  <p class="mt-1 font-semibold text-slate-900"><span class="countup" data-to="11">0</span> + custom</p>
                 </div>
                 <div>
                   <p class="text-slate-400 uppercase tracking-wider">Languages</p>
@@ -317,7 +359,7 @@
         </article>
 
         <!-- Case study 3: Document Summarization -->
-        <article class="group mb-8 overflow-hidden rounded-3xl border border-slate-200 bg-white transition hover:shadow-2xl hover:shadow-slate-300/30">
+        <article class="reveal group mb-8 overflow-hidden rounded-3xl border border-slate-200 bg-white transition hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-300/40">
           <div class="grid md:grid-cols-2 gap-0">
             <!-- Visual side -->
             <div class="relative aspect-[4/3] md:aspect-auto bg-gradient-to-br from-amber-50 to-orange-100 overflow-hidden">
@@ -369,11 +411,11 @@
               <div class="mt-6 grid grid-cols-3 gap-3 text-xs">
                 <div>
                   <p class="text-slate-400 uppercase tracking-wider">Saved per case</p>
-                  <p class="mt-1 font-semibold text-slate-900">~10 minutes</p>
+                  <p class="mt-1 font-semibold text-slate-900">~<span class="countup" data-to="10">0</span> minutes</p>
                 </div>
                 <div>
                   <p class="text-slate-400 uppercase tracking-wider">Output</p>
-                  <p class="mt-1 font-semibold text-slate-900">5-part structured</p>
+                  <p class="mt-1 font-semibold text-slate-900"><span class="countup" data-to="5">0</span>-part structured</p>
                 </div>
                 <div>
                   <p class="text-slate-400 uppercase tracking-wider">Sentiment</p>
@@ -480,7 +522,7 @@
           </h2>
         </div>
 
-        <article class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <article class="reveal overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
           <div class="border-l-4 border-accent">
             <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 px-8 py-5 md:px-12">
               <div>
@@ -582,14 +624,15 @@
     <!-- ================================================================ -->
     <section id="contact" class="relative py-20 md:py-28">
       <div class="mx-auto max-w-6xl px-6">
-        <div class="rounded-3xl bg-slate-900 text-white p-10 md:p-16 overflow-hidden relative">
-          <div class="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-orange-500/20 blur-3xl"></div>
+        <div class="reveal rounded-3xl bg-[#ED3F22] text-white p-10 md:p-16 overflow-hidden relative">
+          <div class="absolute -top-32 -right-24 h-96 w-96 rounded-full bg-white/10 blur-3xl"></div>
+          <div class="absolute -bottom-40 -left-24 h-96 w-96 rounded-full bg-[#ff8a6e]/20 blur-3xl"></div>
           <div class="relative">
-            <p class="text-xs uppercase tracking-wider text-orange-300">Get in touch</p>
+            <p class="text-xs uppercase tracking-wider text-white/75">Get in touch</p>
             <h2 class="mt-3 font-display text-3xl md:text-5xl font-semibold tracking-tight">
               Building something at the intersection of AI and business processes?
             </h2>
-            <p class="mt-5 max-w-2xl text-lg text-slate-300">
+            <p class="mt-5 max-w-2xl text-lg text-white/85">
               I'd love to hear about it — whether it's a job opening, a freelance
               project, or just a chat over coffee.
             </p>
@@ -637,6 +680,73 @@
 
     <script>
       lucide.createIcons();
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // --- Scroll reveal: elements rise into view as they enter the viewport ---
+      const revealEls = document.querySelectorAll('.reveal, .accent-underline');
+      if (reduceMotion) {
+        revealEls.forEach((el) => el.classList.add('in-view'));
+      } else {
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12 }
+        );
+        revealEls.forEach((el) => revealObserver.observe(el));
+      }
+
+      // --- Count-up: numbers tick up the first time they scroll into view ---
+      function animateCount(el) {
+        const target = parseFloat(el.dataset.to);
+        if (reduceMotion) {
+          el.textContent = target;
+          return;
+        }
+        const duration = 1100;
+        const started = performance.now();
+        function frame(now) {
+          const p = Math.min(1, (now - started) / duration);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(target * eased);
+          if (p < 1) requestAnimationFrame(frame);
+          else el.textContent = target;
+        }
+        requestAnimationFrame(frame);
+      }
+      const countObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              animateCount(entry.target);
+              countObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.6 }
+      );
+      document.querySelectorAll('.countup').forEach((el) => countObserver.observe(el));
+
+      // --- Hero cursor spotlight: a soft brand glow tracks the pointer ---
+      const hero = document.getElementById('hero-section');
+      const spotlight = document.getElementById('spotlight');
+      if (hero && spotlight && !reduceMotion) {
+        hero.addEventListener('pointermove', (e) => {
+          const rect = hero.getBoundingClientRect();
+          spotlight.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+          spotlight.style.setProperty('--my', `${e.clientY - rect.top}px`);
+          spotlight.style.opacity = '1';
+        });
+        hero.addEventListener('pointerleave', () => {
+          spotlight.style.opacity = '0';
+        });
+      }
     </script>
   </body>
 </html>
