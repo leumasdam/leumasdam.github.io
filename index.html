@@ -32,6 +32,11 @@
     />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
     <style>
       :root {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -172,9 +177,45 @@
     </section>
 
     <!-- ================================================================ -->
+    <!-- PROOF STRIP                                                       -->
+    <!-- ================================================================ -->
+    <section class="relative pb-8 md:pb-12">
+      <div class="mx-auto max-w-6xl px-6">
+        <div class="reveal rounded-2xl bg-slate-900 px-6 py-8 md:px-12">
+          <dl class="grid grid-cols-2 gap-8 md:grid-cols-4">
+            <div>
+              <dt class="font-display text-3xl md:text-4xl font-semibold text-white">
+                <span class="countup" data-to="4">0</span>
+              </dt>
+              <dd class="mt-1 text-xs uppercase tracking-wider text-slate-400">Live demos</dd>
+            </div>
+            <div>
+              <dt class="font-display text-3xl md:text-4xl font-semibold text-white">
+                <span class="countup" data-to="35">0</span>
+              </dt>
+              <dd class="mt-1 text-xs uppercase tracking-wider text-slate-400">Automated tests</dd>
+            </div>
+            <div>
+              <dt class="font-display text-3xl md:text-4xl font-semibold text-white">
+                ~<span class="countup" data-to="21">0</span>
+              </dt>
+              <dd class="mt-1 text-xs uppercase tracking-wider text-slate-400">Min saved / case</dd>
+            </div>
+            <div>
+              <dt class="font-display text-3xl md:text-4xl font-semibold text-white">
+                <span class="countup" data-to="100">0</span><span class="accent">%</span>
+              </dt>
+              <dd class="mt-1 text-xs uppercase tracking-wider text-slate-400">Open source</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
     <!-- WORK                                                              -->
     <!-- ================================================================ -->
-    <section id="work" class="relative py-20 md:py-28">
+    <section id="work" class="relative pt-8 pb-20 md:pt-10 md:pb-28">
       <div class="mx-auto max-w-6xl px-6">
         <div class="flex flex-wrap items-end justify-between gap-4 mb-12">
           <div>
@@ -453,6 +494,156 @@
             </div>
           </div>
         </article>
+
+        <!-- Case study 4: Excel Report Builder -->
+        <article class="reveal group mb-8 overflow-hidden rounded-3xl border border-slate-200 bg-white transition hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-300/40">
+          <div class="grid md:grid-cols-2 gap-0">
+            <!-- Text side first -->
+            <div class="p-8 md:p-10 flex flex-col md:order-1">
+              <div class="flex items-center gap-2 text-xs">
+                <span class="rounded-full bg-orange-50 text-orange-700 px-2.5 py-1 font-medium">Live demo</span>
+                <span class="rounded-full bg-slate-100 text-slate-600 px-2.5 py-1 font-medium">Pure Python</span>
+                <span class="rounded-full bg-slate-100 text-slate-600 px-2.5 py-1 font-medium">2026</span>
+              </div>
+              <h3 class="mt-4 font-display text-2xl md:text-3xl font-semibold tracking-tight">Excel Report Builder</h3>
+              <p class="mt-3 text-slate-600 leading-relaxed">
+                Upload a claims CSV — get back a formatted, multi-sheet Excel
+                workbook: a summary dashboard with KPIs and a category chart,
+                plus a filterable detail sheet with conditional formatting. The
+                deliberately non-AI piece of the suite — CSV parsing, aggregation
+                written from scratch (no pandas), and a substantial openpyxl layer.
+              </p>
+
+              <div class="mt-6 grid grid-cols-3 gap-3 text-xs">
+                <div>
+                  <p class="text-slate-400 uppercase tracking-wider">Output</p>
+                  <p class="mt-1 font-semibold text-slate-900">Multi-sheet .xlsx</p>
+                </div>
+                <div>
+                  <p class="text-slate-400 uppercase tracking-wider">AI used</p>
+                  <p class="mt-1 font-semibold text-slate-900">None — pure Python</p>
+                </div>
+                <div>
+                  <p class="text-slate-400 uppercase tracking-wider">Unit tests</p>
+                  <p class="mt-1 font-semibold text-slate-900"><span class="countup" data-to="13">0</span> · CI</p>
+                </div>
+              </div>
+
+              <div class="mt-6 flex flex-wrap gap-1.5">
+                <span class="rounded-md bg-slate-100 px-2 py-1 text-xs font-mono text-slate-700">FastAPI</span>
+                <span class="rounded-md bg-slate-100 px-2 py-1 text-xs font-mono text-slate-700">openpyxl</span>
+                <span class="rounded-md bg-slate-100 px-2 py-1 text-xs font-mono text-slate-700">pytest</span>
+                <span class="rounded-md bg-slate-100 px-2 py-1 text-xs font-mono text-slate-700">Docker</span>
+              </div>
+
+              <div class="mt-auto pt-8 flex flex-wrap gap-2">
+                <a
+                  href="https://excel-report-builder.onrender.com"
+                  target="_blank"
+                  rel="noopener"
+                  class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-700"
+                >
+                  <i data-lucide="external-link" class="h-4 w-4"></i>
+                  Open live demo
+                </a>
+                <a
+                  href="https://github.com/leumasdam/excel-report-builder"
+                  target="_blank"
+                  rel="noopener"
+                  class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+                >
+                  <i data-lucide="github" class="h-4 w-4"></i>
+                  Source
+                </a>
+              </div>
+            </div>
+            <!-- Visual side -->
+            <div class="relative aspect-[4/3] md:aspect-auto bg-gradient-to-br from-emerald-50 to-emerald-100 overflow-hidden">
+              <div class="absolute inset-6 rounded-xl bg-white shadow-xl border border-slate-200 p-3 flex flex-col gap-1.5 transform group-hover:scale-105 transition-transform duration-500">
+                <div class="flex items-center gap-1.5 pb-1.5 border-b border-slate-100">
+                  <div class="h-2 w-2 rounded-full bg-red-300"></div>
+                  <div class="h-2 w-2 rounded-full bg-amber-300"></div>
+                  <div class="h-2 w-2 rounded-full bg-emerald-300"></div>
+                  <span class="ml-1 text-[8px] text-slate-400 font-mono">claims-report.xlsx</span>
+                </div>
+                <div class="grid grid-cols-4 gap-px bg-slate-200 text-[7px]">
+                  <div class="bg-[#002F5F] text-white px-1 py-0.5 font-bold">ID</div>
+                  <div class="bg-[#002F5F] text-white px-1 py-0.5 font-bold">Category</div>
+                  <div class="bg-[#002F5F] text-white px-1 py-0.5 font-bold">Status</div>
+                  <div class="bg-[#002F5F] text-white px-1 py-0.5 font-bold">Amount</div>
+                  <div class="bg-white px-1 py-0.5 text-slate-500">CLM-01</div>
+                  <div class="bg-white px-1 py-0.5 text-slate-500">Vehicle</div>
+                  <div class="bg-emerald-100 px-1 py-0.5 text-emerald-800">Approved</div>
+                  <div class="bg-orange-200 px-1 py-0.5 text-slate-700">1 260</div>
+                  <div class="bg-slate-50 px-1 py-0.5 text-slate-500">CLM-02</div>
+                  <div class="bg-slate-50 px-1 py-0.5 text-slate-500">Property</div>
+                  <div class="bg-amber-100 px-1 py-0.5 text-amber-800">Review</div>
+                  <div class="bg-orange-300 px-1 py-0.5 text-slate-700">3 450</div>
+                  <div class="bg-white px-1 py-0.5 text-slate-500">CLM-03</div>
+                  <div class="bg-white px-1 py-0.5 text-slate-500">Health</div>
+                  <div class="bg-emerald-100 px-1 py-0.5 text-emerald-800">Paid</div>
+                  <div class="bg-orange-100 px-1 py-0.5 text-slate-700">820</div>
+                </div>
+                <div class="mt-1 flex items-end gap-1 h-10 px-1">
+                  <div class="flex-1 bg-[#ED3F22] rounded-t" style="height: 90%"></div>
+                  <div class="flex-1 bg-[#ED3F22]/70 rounded-t" style="height: 60%"></div>
+                  <div class="flex-1 bg-[#ED3F22]/50 rounded-t" style="height: 38%"></div>
+                  <div class="flex-1 bg-[#ED3F22]/30 rounded-t" style="height: 22%"></div>
+                </div>
+                <p class="text-[7px] text-slate-400 text-center">Total amount by category</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- CODE SNIPPET                                                      -->
+    <!-- ================================================================ -->
+    <section class="relative py-16 md:py-20 bg-white">
+      <div class="mx-auto max-w-5xl px-6">
+        <div class="reveal grid gap-8 md:grid-cols-12 md:items-center">
+          <div class="md:col-span-4">
+            <p class="text-xs uppercase tracking-wider text-slate-500">Under the hood</p>
+            <h2 class="mt-2 font-display text-2xl md:text-3xl font-semibold tracking-tight">
+              Real Python, not glue code
+            </h2>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">
+              Aggregation in the Excel Report Builder is written from scratch —
+              grouping, totals and shares with the standard library, no pandas.
+              Small, readable, and unit-tested.
+            </p>
+          </div>
+          <div class="md:col-span-8">
+            <div class="overflow-hidden rounded-2xl border border-slate-800 bg-[#0d1117] shadow-xl">
+              <div class="flex items-center gap-1.5 border-b border-slate-800 px-4 py-2.5">
+                <div class="h-2.5 w-2.5 rounded-full bg-red-400/70"></div>
+                <div class="h-2.5 w-2.5 rounded-full bg-amber-400/70"></div>
+                <div class="h-2.5 w-2.5 rounded-full bg-emerald-400/70"></div>
+                <span class="ml-2 text-xs font-mono text-slate-500">app/aggregator.py</span>
+              </div>
+<pre class="m-0 overflow-x-auto p-5 text-[13px] leading-relaxed"><code class="language-python">def _group(records, key_fn, grand_total):
+    """Group claim amounts by a key, with totals, averages and shares."""
+    buckets = defaultdict(list)
+    for record in records:
+        buckets[key_fn(record)].append(record.amount)
+
+    stats = []
+    for key, amounts in buckets.items():
+        total = round(sum(amounts), 2)
+        stats.append(GroupStat(
+            key=key,
+            count=len(amounts),
+            total=total,
+            average=round(total / len(amounts), 2),
+            share=round(total / grand_total, 4) if grand_total else 0.0,
+        ))
+    return sorted(stats, key=lambda s: s.total, reverse=True)
+</code></pre>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -680,6 +871,7 @@
 
     <script>
       lucide.createIcons();
+      if (window.hljs) hljs.highlightAll();
 
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
